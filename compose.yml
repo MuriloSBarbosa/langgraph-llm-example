@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:13-alpine
+    container_name: langgraph-test
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres_langgraph_test_data:/var/lib/postgresql/data
+      - ./docker/postgres:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres_langgraph_test_data:
